@@ -2,7 +2,6 @@ var gulp = require("gulp");
 var gulpIf = require('gulp-if');
 var cssnano = require('gulp-cssnano');
 var uglify = require("gulp-uglify");
-var cache = require('gulp-cache');
 var runSequence = require('run-sequence');
 var sass = require("gulp-sass");
 var environments = require("gulp-environments");
@@ -12,9 +11,8 @@ var browserify = require("browserify");
 var minifyCss = require('gulp-minify-css');
 var useref = require("gulp-useref");
 var imagemin = require("gulp-imagemin");
+const babel = require('gulp-babel');
 var del = require('del');
-var development = environments.development;
-var production = environments.production;
 const theload = "DoDoc";
 const mien = "Beverage" ; // Beverage
 const baseDir =  "./"; //"./src/"+mien+"/"+ theload;
@@ -24,7 +22,10 @@ gulp.task("useref", function() {
     return gulp
         .src(baseDir + "index.html")
         .pipe(useref())
-        .pipe(gulpIf(['**/*.js', '!**/*.min.js'], uglify()))
+        .pipe(gulpIf(['**/*.js', '!**/*.min.js'],babel({
+            presets: ['@babel/env']
+        })))
+        .pipe(gulpIf(['**/*.js', '!**/*.min.js'],uglify()))
         .pipe(gulpIf('*.css', cssnano()))
         .pipe(gulp.dest(buildDir));
 });
@@ -52,8 +53,8 @@ gulp.task("browserSync", function() {
 // compress Image
 
 gulp.task('imagess', function(){
-    return gulp.src(baseDir + '/assets/img/**/*.+(png|jpg|jpeg|gif)')
-    .pipe(gulp.dest(buildDir + "/assets/img"))
+    return gulp.src(baseDir + '/assets/images/**/*.+(png|jpg|jpeg|gif)')
+    .pipe(gulp.dest(buildDir + "/assets/images"))
   });
 
 // copy sounds

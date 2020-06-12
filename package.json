@@ -39,6 +39,9 @@
     "graceful-fs": "4.2.3"
   },
   "dependencies": {
-    "graceful-fs": "4.2.2"
+    "@babel/core": "^7.10.2",
+    "@babel/preset-env": "^7.10.2",
+    "graceful-fs": "4.2.2",
+    "gulp-babel": "^8.0.0"
   }
 }
