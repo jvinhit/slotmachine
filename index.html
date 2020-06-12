@@ -13,15 +13,15 @@
 
         <!--build:js js/lib/vendor.min.js -->
         <script type="text/javascript" src="./js/lib/jquery.min.js"></script>
+        <script type="text/javascript" src="./js/lib/sweetalert2@9.js"></script>
         <script type="text/javascript" src="./js/jquery.spritely.js"></script>
         <script type="text/javascript" src="./js/jquery.backgroundPosition.js"></script>
         <!--endbuild-->
-
     </head>
     <body>
-        <input type="text" id="result_input" />
         <div class="container">
             <section class="jackpot">
+                <img src="./assets/images/jackpot-title.png" class="j3 img-responsive" />
                 <img src="./assets/images/lighting.png" class="j1 img-responsive" />
                 <img src="./assets/images/jackpot.png" class="j0 img-responsive" />
                 <div class="game-container">
@@ -34,8 +34,9 @@
                     </div>
                 </div>
             </section>
-            <div id="result"></div>
-            <div><button id="control">Start</button></div>
+            <div class="button-wrapper">
+                <button id="control" class="button">Start</button>
+            </div>
         </div>
         <!--build:js js/main.js -->
         <script type="text/javascript" src="./js/slot.js"></script>

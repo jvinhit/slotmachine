@@ -1,16 +1,111 @@
+var listEmp = [
+  {
+    CODE: 4219,
+    NAME: "Trần Thu Hiền"
+  },
+  {
+    CODE: 2816,
+    NAME: "Mai Thanh Huyền"
+  },
+  {
+    CODE: 6798,
+    NAME: "Nguyễn Hải Linh"
+  },
+  {
+    CODE: 6457,
+    NAME: "Vũ Khắc Việt"
+  },
+  {
+    CODE: 6628,
+    NAME: "Mai Lâm Huy Bình"
+  },
+  {
+    CODE: 6332,
+    NAME: "Dương Minh Quang"
+  },
+  {
+    CODE: 5711,
+    NAME: "Mai Đình Nhất"
+  },
+  {
+    CODE: 5478,
+    NAME: "Khưu Lê Tuấn Anh"
+  },
+  {
+    CODE: 6768,
+    NAME: "Phạm Huy Đăng"
+  },
+  {
+    CODE: 6775,
+    NAME: "Phạm Xuân Thiện"
+  },
+  {
+    CODE: 4944,
+    NAME: "Hồ Khôi Nguyên"
+  },
+  {
+    CODE: 6102,
+    NAME: "Nguyễn Thanh Huyền"
+  },
+  {
+    CODE: 5944,
+    NAME: "Phan Đức Sơn"
+  },
+  {
+    CODE: 3029,
+    NAME: "Lê Thanh Cần"
+  },
+  {
+    CODE: 6455,
+    NAME: "Nguyễn Minh Công"
+  },
+  {
+    CODE: 6773,
+    NAME: "Trần Chinh"
+  },
+  {
+    CODE: 5886,
+    NAME: "Nguyễn Thiện Chí"
+  },
+  {
+    CODE: 4283,
+    NAME: "Đỗ Hữu Phúc"
+  },
+  {
+    CODE: 2681,
+    NAME: "Lương Thị Quế Chi"
+  },
+  {
+    CODE: 6689,
+    NAME: "Lê Thị Thủy Trang"
+  },
+  {
+    CODE: 6685,
+    NAME: "ĐINH THỊ NHUNG"
+  },
+  {
+    CODE: 6333,
+    NAME: "Nguyễn Văn Duyên"
+  },
+  {
+    CODE: 6730,
+    NAME: "Vũ Mạnh Hùng"
+  },
+  {
+    CODE: 6458,
+    NAME: "Hoàng Văn Thái"
+  }
+];
+
+function randomIntFromInterval(min, max) { 
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
 $(document).ready(function () {
     var completed = 0,
         imgHeight = 700,
         posArr = [0, 70, 140, 210, 280, 350, 420, 490, 560, 630], // [1,2,3,4,5,6,7,8,9,0]
         posMapping = [1, 0, 9, 8, 7, 6, 5, 4, 3, 2];
-    var win = [];
-    //   win[0] = win[454] = win[913] = 1;
-    //   win[80] = win[539] = win[1000] = 2;
-    //   win[165] = win[624] = win[1085] = 3;
-    //   win[237] = win[696] = win[1157] = 4;
-    //   win[310] = win[769] = win[1230] = 5;
-    //   win[378] = win[837] = win[1298] = 6;
-
     /**
      * @class Slot
      * @constructor
@@ -155,7 +250,7 @@ $(document).ready(function () {
     }
 
     //create slot objects
-    var a = new Slot("#slot1", 40, 1),
+    const a = new Slot("#slot1", 40, 1),
         b = new Slot("#slot2", 50, 2),
         c = new Slot("#slot3", 60, 3),
         d = new Slot("#slot4", 70, 4);
@@ -164,68 +259,43 @@ $(document).ready(function () {
      * Slot machine controller
      */
     $("#control").click(function () {
-        var x;
-        if (this.innerHTML == "Start") {
-            if (result_input) {
-                const resultValue = result_input.value;
-                if (resultValue) {
-                    const [aa, bb, cc, dd] = resultValue;
+        disableControl();
+        let x;
+        const selectedPerson = randomIntFromInterval(0, listEmp.length-1);
+        const  selectedCode = listEmp[selectedPerson].CODE.toString();
+        const  selectedName = listEmp[selectedPerson].NAME.toString();
 
-                    a.finalIndex = posMapping.findIndex((item) => item === parseInt(aa));
-                    b.finalIndex = posMapping.findIndex((item) => item === parseInt(bb));
-                    c.finalIndex = posMapping.findIndex((item) => item === parseInt(cc));
-                    d.finalIndex = posMapping.findIndex((item) => item === parseInt(dd));
-                }
-            }
-
-            a.start();
-            b.start();
-            c.start();
-            d.start();
-            // auto sto
-            for (let i = 1; i < 5; i++) {
-                setTimeout(() => {
-                    i === 1 && a.stop();
-                    i === 2 && b.stop();
-                    i === 3 && c.stop();
-                    i === 4 && d.stop();
-                }, i * 500 + 3000);
-            }
-            /////
-
-            //   disableControl(); //disable control until the slots reach max speed
-
-            //check every 100ms if slots have reached max speed
-            //if so, enable the control
-            x = window.setInterval(function () {
-                if (a.speed >= a.maxSpeed && b.speed >= b.maxSpeed && c.speed >= c.maxSpeed) {
-                    enableControl();
-                    window.clearInterval(x);
-                }
-            }, 100);
-        } else if (this.innerHTML == "Stop") {
-            a.stop();
-            b.stop();
-            c.stop();
-            this.innerHTML = "Reset";
-
-            disableControl(); //disable control until the slots stop
-
-            //check every 100ms if slots have stopped
-            //if so, enable the control
-            x = window.setInterval(function () {
-                if (a.speed === 0 && b.speed === 0 && c.speed === 0 && completed === 3) {
-                    enableControl();
-                    window.clearInterval(x);
-                    printResult();
-                }
-            }, 100);
-        } else {
-            //reset
-            a.reset();
-            b.reset();
-            c.reset();
-            this.innerHTML = "Start";
+        if (selectedCode) {
+                const [aa, bb, cc, dd] = selectedCode;
+                a.finalIndex = posMapping.findIndex((item) => item === parseInt(aa));
+                b.finalIndex = posMapping.findIndex((item) => item === parseInt(bb));
+                c.finalIndex = posMapping.findIndex((item) => item === parseInt(cc));
+                d.finalIndex = posMapping.findIndex((item) => item === parseInt(dd));
         }
+
+        a.start();
+        b.start();
+        c.start();
+        d.start();
+        // auto sto
+        for (let i = 1; i < 5; i++) {
+            setTimeout(() => {
+                i === 1 && a.stop();
+                i === 2 && b.stop();
+                i === 3 && c.stop();
+                i === 4 && d.stop();
+            }, i * 500 + 3000);
+        }
+        x = window.setInterval(function () {
+            if ( a.speed === 0 && b.speed === 0 && c.speed === 0 && d.speed === 0 ) {
+              Swal.fire(
+                'Xin Chúc Mừng',
+                `[${selectedCode}] - ${selectedName }`,
+                'success'
+              );
+                setTimeout(() =>  enableControl(), 2000)
+                window.clearInterval(x);
+            }
+        }, 100);
     });
 });

@@ -1,0 +1,35 @@
+.button-wrapper {
+    margin-top: 15px;
+    text-align: center;
+    .button {
+        font: bold 24px Roboto, sans-serif;
+        text-transform: uppercase;
+        color: rgba(0, 0, 0, 0.8);
+        text-shadow: 0 0.08em 0 rgba(255, 255, 255, 0.5);
+        display: inline-block;
+        outline: none;
+        cursor: pointer;
+        padding: 10px 15px 10px;
+        border-radius: 5px;
+        border: 2px solid;
+        border-color: rgb(190, 190, 190) rgb(167, 167, 167) rgb(143, 143, 143);
+        background-color: #eee;
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#eee), to(rgb(214, 214, 214)));
+        background-image: linear-gradient(#eee, rgb(214, 214, 214));
+        box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.1), 0 0.1em 0.2em rgba(0, 0, 0, 0.3), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+        transition: all 100ms;
+        &:hover,
+        &:focus {
+            box-shadow: 0 0.1em 0.5em rgba(0, 0, 0, 0.4), 0 0.1em 0.2em rgba(0, 0, 0, 0.4), 0 -0.1em 0.07em rgba(0, 0, 0, 0.3) inset, 0 0.1em 0.07em rgba(255, 255, 255, 0.2) inset;
+        }
+        &:active {
+            padding: 10px 15px 10px;
+            margin-top: 0.1em;
+            border-color: rgb(167, 167, 167) rgb(190, 190, 190) #eee;
+            background-image: -webkit-gradient(linear, left top, left bottom, from(rgb(226, 226, 226)), to(#eee));
+            background-image: linear-gradient(rgb(226, 226, 226), #eee);
+            box-shadow: 0 0.1em 0.2em rgba(0, 0, 0, 0.1) inset, 0 0.1em 0.1em rgba(0, 0, 0, 0.2) inset, 0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset, -0.05em 0 0.07em rgba(0, 0, 0, 0.2) inset;
+            transition-duration: 10ms;
+        }
+    }
+}
