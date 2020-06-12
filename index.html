@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Slot Machine in Javascript</title>
+        <meta name="description" content="Welcome to the Javascript version of Slot Machine written by Saurabh Odhyan" />
+        <meta name="keywords" content="javascript, jquery, spritely, animation, sprite, background position, slot, game, games, saurabh, odhyan" />
+        <link rel="stylesheet" href="./css/index.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+        <script src="jquery.spritely.js"></script>
+        <script src="jquery.backgroundPosition.js"></script>
+        <script src="slot.js"></script>
+    </head>
+    <body>
+      <input type="text" id="result_input">
+      <div class="container">
+        <section class="jackpot">
+            <img src="./assets/images/lighting.png" class="j1 img-responsive" />
+            <img src="./assets/images/jackpot.png"  class="j0 img-responsive"/>
+            <div class="game-container">
+              <div class="slot-wrapper">
+                  <div id="slot1" class="slot"></div>
+                  <div id="slot2" class="slot"></div>
+                  <div id="slot3" class="slot"></div>
+                  <div id="slot4" class="slot"></div>
+                  <div class="clear"></div>
+              </div>
+          </div>
+        </section>
+        <div id="result"></div>
+              <div><button id="control">Start</button></div>
+      </div>
+    </body>
+</html>

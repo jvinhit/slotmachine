@@ -1,0 +1,90 @@
+@import "./nomalize.scss";
+html,
+body {
+    background-color: #0c0d16;
+    height: 100%;
+}
+
+body {
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    line-height: 1.75;
+    font-size: 16px;
+    background: url(../assets/images/bg.jpg) top center;
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+}
+.container {
+    position: relative;
+    overflow: hidden;
+    .jackpot {
+        margin: 0 auto;
+        text-align: center;
+        z-index: 99999;
+        position: relative;
+        .j1 {
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        img {
+            margin: 0 auto;
+        }
+        .img-responsive {
+            display: block;
+            max-width: 100%;
+            height: auto;
+        }
+    }
+}
+.game-container {
+    position: relative;
+    margin: 0 auto;
+    width: 392px; //354px;
+    margin-top: -200px;
+    z-index: 9999;
+}
+
+.slot {
+    background: url("../assets/images/reel_normal.png") repeat-y; /*Taken from http://www.swish-designs.co.uk*/
+    width: 86px;
+    height: 70px;
+    float: left;
+    background-position: 0 4px;
+    background-color: #edddd4;
+    font-weight: bold;
+    box-shadow: 1px 0 0 1px #284b63;
+}
+.motion {
+    background: url("../assets/images/reel_blur.png") repeat-y; /*Taken from http://www.swish-designs.co.uk*/
+}
+button {
+    display: block;
+    width: 138px;
+    height: 33px;
+    margin: 20px 60px;
+    font-size: 16px;
+    cursor: pointer;
+}
+#result {
+    margin: 20px 0;
+    font-size: 18px;
+    font-weight: bold;
+    height: 22px;
+}
+.credits {
+    font-size: 15px;
+    margin-top: 20px;
+}
+.credits .browsers {
+    font-style: italic;
+    font-size: 14px;
+    color: #777;
+    margin-top: 4px;
+}
+.clear {
+    clear: both;
+}
